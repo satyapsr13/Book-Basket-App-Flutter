@@ -3,7 +3,8 @@
 ## Folder Structure
 
 ### Flutter Mobile application using :-
-    ```
+
+```
     1. BLOC statemangement technique
     2. Shared Prefrences
     3. Flutter Local Database
@@ -11,7 +12,8 @@
     5. Statemanagement with Bloc Provider.
     6. API calling with DIO.
     7. 
-    ```
+ 
+ ```
 ### BookBasket -> Assets
 ```
 It constains all images and icons used in Mobile App.
@@ -21,7 +23,6 @@ It constains all images and icons used in Mobile App.
 It constains all android specific logic.
 
 ```
-
 
 ### BookBasket -> IOS
 ```
