@@ -1,14 +1,16 @@
+import 'package:book_basket/Constants/locations.dart';
+import 'package:book_basket/Data/services/secure_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nhsbpmonitor/Constants/locations.dart';
+// import 'package:nhsbpmonitor/Constants/locations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:nhsbpmonitor/Data/services/secure_storage.dart';
-import 'package:nhsbpmonitor/Logic/Cubit/user_profile_cubit/user_profile_cubit.dart';
+// import 'package:nhsbpmonitor/Data/services/secure_storage.dart';
+// import 'package:nhsbpmonitor/Logic/Cubit/user_profile_cubit/user_profile_cubit.dart';
 // import 'package:nhsbpmonitor/Presentation/Screens/UserDetails/pregnancy_details.dart';
 
-import 'package:nhsbpmonitor/Routes/routes.gr.dart';
+// import 'package:nhsbpmonitor/Routes/routes.gr.dart';
 
 // import 'package:nhsbpmonitor/constants/locations.dart';
 
@@ -46,49 +48,6 @@ class _MyDrawer2State extends State<MyDrawer> {
                     const Spacer(
                       flex: 10,
                     ),
-                    BlocBuilder<UserProfileCubit, UserProfileState>(
-                      builder: (context, state) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              "${state.userData?.patientUserData?.firstName} ${state.userData?.patientUserData?.lastName}",
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            // Text(
-                            //   'ID:- ${state.userData?.patientUserData?.id}',
-                            //   style: TextStyle(
-                            //     color: Colors.white.withOpacity(0.8),
-                            //     fontSize: 12,
-                            //     // fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
-                            // const SizedBox(height: 5),
-                            // profile edit button
-
-                            // InkWell(
-                            //   onTap: () {
-                            //     context.replaceRoute(
-                            //         const PersonalDetailsScreen());
-                            //   },
-                            //   child: Text(
-                            //     tr('view_and_edit_profile'),
-                            //     style: TextStyle(
-                            //         decoration: TextDecoration.underline,
-                            //         color: Colors.white.withOpacity(0.8),
-                            //         fontSize: 12),
-                            //   ),
-                            // ),
-                          ],
-                        );
-                      },
-                    ),
                     const Spacer(
                       flex: 2,
                     ),
@@ -113,8 +72,8 @@ class _MyDrawer2State extends State<MyDrawer> {
                 const SizedBox(height: 20),
                 DrawerButton(
                     ontap: () {
-                      Navigator.pop(context);
-                      context.replaceRoute(const HomeScreen());
+                      // Navigator.pop(context);
+                      // context.replaceRoute(const HomeScreen());
                     },
                     title: "home"),
                 const SizedBox(height: 20),
@@ -126,10 +85,10 @@ class _MyDrawer2State extends State<MyDrawer> {
                 // const SizedBox(height: 20),
                 DrawerButton(
                     ontap: () {
-                      Navigator.pop(context);
-                      // close end drawer
+                      // Navigator.pop(context);
+                      // // close end drawer
 
-                      context.pushRoute(const UserDoctorAndHospitalScreen());
+                      // context.pushRoute(const UserDoctorAndHospitalScreen());
                     },
                     title: "my_hospital_doctor"),
                 const SizedBox(height: 20),
@@ -156,8 +115,8 @@ class _MyDrawer2State extends State<MyDrawer> {
                 // const SizedBox(height: 20),
                 DrawerButton(
                     ontap: () {
-                      Navigator.pop(context);
-                      context.pushRoute(const RemindersScreen());
+                      // Navigator.pop(context);
+                      // context.pushRoute(const RemindersScreen());
                     },
                     title: "reminders"),
                 const SizedBox(height: 20),
@@ -165,7 +124,7 @@ class _MyDrawer2State extends State<MyDrawer> {
                     ontap: () {
                       final storage = SecureStorage();
                       storage.deleteAll();
-                      context.replaceRoute(const OnBoardingScreen());
+                      // context.replaceRoute(const OnBoardingScreen());
                       // context.replaceRouteonst OnBoardingScreen());
                     },
                     title: "logout"),

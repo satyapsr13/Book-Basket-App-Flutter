@@ -1,72 +1,222 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
+// ignore_for_file: prefer_const_constructors
+import 'package:book_basket/Constants/colors.dart';
+// import 'package:book_basket/Constants/AppImages.dart';
+import 'package:book_basket/Constants/locations.dart';
 import 'package:flutter/material.dart';
-import 'package:nhsbpmonitor/Presentation/Widgets/gradient_screen_widget.dart';
 
-import 'package:nhsbpmonitor/Routes/routes.gr.dart';
-import 'package:nhsbpmonitor/constants/locations.dart';
+class OnboardingScreen extends StatelessWidget {
+  OnboardingScreen({Key? key}) : super(key: key);
 
-class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({Key? key}) : super(key: key);
-  // void Function()? ontap;
+// scroll controller
+
+  final PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
-    final mediaquery = MediaQuery.of(context).size;
-
-    return GradientScreen(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _whiteLogoImage(),
-            SizedBox(height: mediaquery.height * 0.15),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                tr('are_you_a'),
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+    return Scaffold(
+      body: Stack(
+        children: [
+          PageView(
+            controller: _pageController,
+            children: [
+              PageView(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppImages.onboarding_1,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppImages.onboarding_1,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppImages.onboarding_1,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      AppImages.onboarding_1,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Skip",
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      _pageController.nextPage(
+                          duration: Duration(milliseconds: 5),
+                          curve: Curves.bounceInOut);
+                    },
+                    child: Text(
+                      "Next",
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            textButton(tr("patient"), () {
-              context.pushRoute(const AccessCodeScreen());
-              // context.pushRoute(route);
-            }),
-            // textButton(tr("med_wife"), () {
-            //   context.pushRoute(const SignInWithUserName());
-            // }),
-            // textButton(tr("doctor"), () {
-            //   context.pushRoute(const SignInWithUserName());
-            //   // context.pushRoute(const HomeScreen());
-            // }),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Image _whiteLogoImage() {
-    return Image.asset(
-      AssetImages.whiteLogo,
-      height: 150,
-      width: 150,
-    );
-  }
+  // @override
+  // Widget build(BuildContext context) {
+  //   final mediaquery = MediaQuery.of(context).size;
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: const Text('appbar'),
+  //     ),
+  //     body: SizedBox(
+  //       width: mediaquery.width,
+  //       height: mediaquery.height,
+  //       child: Column(
+  //         children: [
+  //           SizedBox(
+  //             height: mediaquery.height * 0.6,
+  //             child: ListView(scrollDirection: Axis.horizontal, children: [
+  //               OnboardingWidget(
+  //                 description: '',
+  //                 mediaQuery: mediaquery,
+  //                 imageUrl: AppImages.onboarding_1,
+  //               ),
+  //               OnboardingWidget(
+  //                 description: '',
+  //                 mediaQuery: mediaquery,
+  //                 imageUrl: AppImages.onboarding_1,
+  //               ),
+  //               OnboardingWidget(
+  //                 description: '',
+  //                 mediaQuery: mediaquery,
+  //                 imageUrl: AppImages.onboarding_1,
+  //               ),
+  //             ]),
+  //           ),
+  //           Row(
+  //             children: [
+  //               const Spacer(),
+  //               IconButton(
+  //                   onPressed: () {},
+  //                   icon: const Icon(
+  //                     Icons.circle,
+  //                     size: 10,
+  //                   )),
+  //               IconButton(
+  //                   onPressed: () {},
+  //                   icon: const Icon(
+  //                     Icons.circle,
+  //                     size: 10,
+  //                   )),
+  //               IconButton(
+  //                   onPressed: () {},
+  //                   icon: const Icon(
+  //                     Icons.circle,
+  //                     size: 10,
+  //                   )),
+  //               const Spacer(),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //     //floatingActionButton: FloatingActionButton(onPressed: (){},),
+  //   );
+  // }
 
-  TextButton textButton(String title, void Function() onPressed) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Row(
+}
+
+class OnboardingWidget extends StatelessWidget {
+  // const OnboardingWidget({Key? key}) : super(key: key);
+  final String imageUrl;
+  final String description;
+  final Size mediaQuery;
+  const OnboardingWidget({
+    Key? key,
+    required this.imageUrl,
+    required this.description,
+    required this.mediaQuery,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: mediaQuery.height * 0.5,
+      width: mediaQuery.width,
+      child: Column(
         children: [
-          Text(
-            title,
-            style: const TextStyle(color: Colors.white, fontSize: 60),
+          SizedBox(
+            height: mediaQuery.height * 0.4,
+            width: mediaQuery.width,
+            child: Image.asset(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
-          const Spacer(),
-          const Icon(
-            Icons.arrow_forward,
-            color: Colors.white,
+          SizedBox(
+            height: mediaQuery.height * 0.1,
+            width: mediaQuery.width,
+            child: Text(
+              description,
+              style: const TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),

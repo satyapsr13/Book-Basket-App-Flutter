@@ -5,9 +5,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:nhsbpmonitor/Data/services/api_result.dart';
-import 'package:nhsbpmonitor/Data/services/dio_client.dart';
-import 'package:nhsbpmonitor/Data/services/network_exceptions.dart';
+import 'package:book_basket/Data/services/api_result.dart';
+import 'package:book_basket/Data/services/dio_client.dart';
+import 'package:book_basket/Data/services/network_exceptions.dart';
 
 class AuthRepository {
   late DioClient dioClient;
