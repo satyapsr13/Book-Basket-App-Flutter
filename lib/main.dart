@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
+// import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -23,39 +23,41 @@ Future<void> main() async {
     systemNavigationBarColor: Colors.transparent,
   ));
   WidgetsFlutterBinding.ensureInitialized();
-  AwesomeNotifications().initialize(
-    'resource://drawable/logo',
-    [
-      NotificationChannel(
-        // channelGroupKey: 'basic_channel_group',
-        channelKey: 'basic_channel',
-        channelName: 'Basic notifications',
-        channelDescription: 'Notification channel for basic tests',
-        defaultColor: Color.fromARGB(255, 80, 221, 216),
-        ledColor: Colors.amber,
-        importance: NotificationImportance.High,
-        channelShowBadge: true,
-      ),
-      NotificationChannel(
-        // channelGroupKey: 'basic_channel_group',
-        channelKey: 'scheduled_channel',
-        channelName: 'Schedule notifications NHS',
-        channelDescription: 'Notification channel for basic tests',
-        defaultColor: Color.fromARGB(255, 80, 221, 216),
-        // ledColor: Colors.white,
-        importance: NotificationImportance.High,
-        locked: true,
-        channelShowBadge: true,
-      )
-    ],
-    // Channel groups are only visual and are not required
-    // channelGroups: [
-    //   NotificationChannelGroup(
-    //       channelGroupkey: 'basic_channel_group',
-    //       channelGroupName: 'Basic group')
-    // ],
-    debug: false,
-  );
+  // AwesomeNotifications().initialize(
+  //   'resource://drawable/logo',
+  //   [
+  //     NotificationChannel(
+  //       // channelGroupKey: 'basic_channel_group',
+  //       channelKey: 'basic_channel',
+  //       channelName: 'Basic notifications',
+  //       channelDescription: 'Notification channel for basic tests',
+  //       defaultColor: Color.fromARGB(255, 80, 221, 216),
+  //       ledColor: Colors.amber,
+  //       importance: NotificationImportance.High,
+  //       channelShowBadge: true,
+  //     ),
+  //     NotificationChannel(
+  //       // channelGroupKey: 'basic_channel_group',
+  //       channelKey: 'scheduled_channel',
+  //       channelName: 'Schedule notifications NHS',
+  //       channelDescription: 'Notification channel for basic tests',
+  //       defaultColor: Color.fromARGB(255, 80, 221, 216),
+  //       // ledColor: Colors.white,
+  //       importance: NotificationImportance.High,
+  //       locked: true,
+  //       channelShowBadge: true,
+  //     )
+  //   ],
+  //   // Channel groups are only visual and are not required
+  //   // channelGroups: [
+  //   //   NotificationChannelGroup(
+  //   //       channelGroupkey: 'basic_channel_group',
+  //   //       channelGroupName: 'Basic group')
+  //   // ],
+  //   debug: false,
+  // );
+
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

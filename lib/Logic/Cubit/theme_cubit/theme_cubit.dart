@@ -1,6 +1,7 @@
 import 'package:book_basket/Constants/enums.dart';
-import 'package:equatable/equatable.dart';
+// import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 part 'theme_state.dart';
 

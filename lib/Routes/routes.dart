@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:book_basket/Presentation/Screens/Auth/log_in.dart';
+import 'package:book_basket/Presentation/Screens/Auth/sign_up.dart';
+import 'package:book_basket/Presentation/Screens/Home/home_screen.dart';
 import 'package:book_basket/Presentation/Screens/IntroScreen/onboarding_screen.dart';
 // ignore_for_file: prefer_const_constructors
 // @AdaptiveAutoRouter(
@@ -38,6 +41,9 @@ import 'package:book_basket/Presentation/Screens/IntroScreen/onboarding_screen.d
   routes: <AutoRoute>[
     // our new login routes are defined here!
     AutoRoute(page: OnboardingScreen),
+    AutoRoute(page: SignUpScreen),
+    AutoRoute(page: LoginScreen),
+    AutoRoute(page: HomeScreen),
     // AutoRoute(page: SignalScreen),
     // AutoRoute(page: BasicInfo),
     // AutoRoute(page: BPReading),

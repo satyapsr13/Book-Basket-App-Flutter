@@ -5,16 +5,17 @@ import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:book_basket/Utility/common.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:auto_route/auto_route.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -115,14 +116,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(height: 20),
               PrimaryButton(
                 onPressed: () {},
-                buttonText: "Sign Up",
+                buttonText: "Login",
                 widthSize: mq.width * 0.5,
               ),
               const SizedBox(height: 20),
               // login with google
               PrimaryButton(
                 onPressed: () {},
-                buttonText: "Sign up with Google",
+                buttonText: "Login with Google",
                 // widthSize: mq.width * 0.5,
               ),
 
@@ -131,17 +132,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Have an account? ',
+                    'Don\'t have an account? ',
                     style: const TextStyle(
                       color: Color(0xff33556A),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      context.replaceRoute(LoginScreen());
+                      context.replaceRoute(SignUpScreen());
                     },
                     child: Text(
-                      'Login Up',
+                      'Sign Up',
                       style: TextStyle(color: AppColors.primaryColor),
                     ),
                   )

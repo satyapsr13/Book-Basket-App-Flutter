@@ -1,3 +1,4 @@
+
 part of 'theme_cubit.dart';
 
 class ThemeState extends Equatable {
@@ -10,7 +11,7 @@ class ThemeState extends Equatable {
   });
 
   @override
-  List<Object?> get props => [theme, isLoggedIn];
+  List<Object> get props => [theme, isLoggedIn.toString()];
 
   ThemeState copyWith({
     AppTheme? theme,
