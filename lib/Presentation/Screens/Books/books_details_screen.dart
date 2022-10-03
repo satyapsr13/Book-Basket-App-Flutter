@@ -10,12 +10,14 @@ class BookDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(
-      title:const Text('appbar'),
-                  ),
-     body:
-    //floatingActionButton: FloatingActionButton(onPressed: (){},),
-      );
-
+      appBar: AppBar(
+        title: const Text('appbar'),
+      ),
+      body: Text(
+        'lorem',
+        style: const TextStyle(),
+      ),
+      //floatingActionButton: FloatingActionButton(onPressed: (){},),
+    );
   }
 }

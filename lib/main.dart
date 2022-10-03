@@ -57,7 +57,6 @@ Future<void> main() async {
   //   debug: false,
   // );
 
-
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -122,7 +121,7 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         routerDelegate: _appRouter.delegate(
-            // initialRoutes: [isLoggedIn ? HomeScreen() : OnBoardingScreen()]),
+            // initialRoutes: [isLoggedIn ? HomeScreen() : OnboardingScreen()]),
             initialRoutes: [OnboardingScreen()]),
 
         routeInformationParser:
@@ -133,12 +132,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-/**
- * 1. Cancelling a notification but again it is not removed from the notification list
- * 2. Removing a notification from the notification list but it is not removed from the notification list
- * 3. Name and id is not updating showing null null
- * 4. Unable to process data error in home screen
- *
- */
