@@ -18,10 +18,10 @@ import 'package:path_provider/path_provider.dart';
 // flutter packages pub run build_runner watch
 
 Future<void> main() async {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    systemNavigationBarColor: Colors.transparent,
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarColor: Colors.transparent,
+  //   systemNavigationBarColor: Colors.transparent,
+  // ));
   WidgetsFlutterBinding.ensureInitialized();
   // AwesomeNotifications().initialize(
   //   'resource://drawable/logo',
@@ -122,7 +122,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routerDelegate: _appRouter.delegate(
             // initialRoutes: [isLoggedIn ? HomeScreen() : OnboardingScreen()]),
-            initialRoutes: [OnboardingScreen()]),
+            initialRoutes: [HomeScreen()]),
 
         routeInformationParser:
             _appRouter.defaultRouteParser(includePrefixMatches: true),

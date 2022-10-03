@@ -1,15 +1,55 @@
+import 'package:book_basket/Constants/locations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context).size;
     return Scaffold(
+      // extendBody: true,
+      extendBodyBehindAppBar: true,
+
       appBar: AppBar(
+        // excludeHeaderSemantics: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('appbar'),
+        title: Container(
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.location_city_rounded),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: const [
+                      Text(
+                        'Sadar Bazar,461001',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                      Icon(Icons.arrow_drop_down_rounded),
+                    ],
+                  ),
+                  Text(
+                    '6c8w+jff,Sadar Bazar,Hoshangabad',
+                    style: TextStyle(color: Colors.white, fontSize: 8),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -32,11 +72,56 @@ class HomeScreen extends StatelessWidget {
               )),
         ],
       ),
-      body: const Text(
-        'lorem',
-        style: TextStyle(),
+      body: Column(
+        children: [
+          Container(
+            width: mq.width,
+            // height: mq.height * 0.3,
+            child: Image.asset(
+              AppImages.carousel_1,
+              fit: BoxFit.contain,
+            ),
+          ),
+          // Expanded(
+          //   child: FlutterCarousel(
+          //     items: [
+          //       Container(
+          //         width: mq.width,
+          //         // height: mq.height * 0.3,
+          //         child: Image.asset(
+          //           AppImages.carousel_2,
+          //           fit: BoxFit.contain,
+          //         ),
+          //       ),
+          //       Container(
+          //         width: mq.width,
+          //         // height: mq.height * 0.4,
+          //         child: Image.asset(
+          //           AppImages.carousel_2,
+          //           fit: BoxFit.contain,
+          //         ),
+          //       ),
+          //     ],
+          //     // carouselController: buttonCarouselController,
+          //     options: CarouselOptions(
+          //       autoPlay: true,
+          //       enlargeCenterPage: true,
+          //       // viewportFraction: 0.9,
+          //       // aspectRatio: 2.0,
+          //       autoPlayAnimationDuration: const Duration(seconds: 2),
+
+          //       initialPage: 0,
+          //     ),
+          //   ),
+          // ),
+
+          const Text(
+            'lorem',
+            style: TextStyle(),
+          ),
+        ],
       ),
-      //floatingActionButton: FloatingActionButton(onPressed: (){},),
+      // floatingActionButton: FloatingActionButton(onPressed: (){},),
     );
   }
 }

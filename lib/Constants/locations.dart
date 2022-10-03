@@ -1,4 +1,3 @@
-
 class AssetIcons {
   static const String aA = "assets/icons/aA.svg";
   static const String calender = "assets/icons/calender.svg";
@@ -35,5 +34,6 @@ class AssetImages {
 
 class AppImages {
   static const String onboarding_1 = "assets/images/onboarding_1.png";
-  
+  static const String carousel_1 = "assets/images/carousel_1.png";
+  static const String carousel_2 = "assets/images/carousel_2.png";
 }

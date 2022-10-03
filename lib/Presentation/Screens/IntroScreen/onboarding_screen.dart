@@ -4,15 +4,21 @@ import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Constants/locations.dart';
 import 'package:flutter/material.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({Key? key}) : super(key: key);
 
-// scroll controller
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
 
+class _OnboardingScreenState extends State<OnboardingScreen> {
+// scroll controller
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -22,8 +28,8 @@ class OnboardingScreen extends StatelessWidget {
               PageView(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+                    width: mq.width * 0.8,
+                    height: mq.height * 0.4,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
@@ -32,10 +38,17 @@ class OnboardingScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    child: Text(
+                      'Page 1',
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.red,
+                      ),
+                    ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+                    width: mq.width * 0.8,
+                    height: mq.height * 0.4,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
@@ -44,10 +57,36 @@ class OnboardingScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    child: Text(
+                      'Page 2',
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.red,
+                      ),
+                    ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+                    width: mq.width * 0.8,
+                    height: mq.height * 0.4,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          AppImages.onboarding_1,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Text(
+                      'Page 3',
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: mq.width * 0.8,
+                    height: mq.height * 0.4,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
@@ -58,18 +97,6 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      AppImages.onboarding_1,
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
               ),
             ],
           ),
@@ -95,9 +122,11 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      _pageController.nextPage(
-                          duration: Duration(milliseconds: 5),
-                          curve: Curves.bounceInOut);
+                      setState(() {
+                        _pageController.nextPage(
+                            duration: Duration(seconds: 1),
+                            curve: Curves.bounceInOut);
+                      });
                     },
                     child: Text(
                       "Next",
@@ -116,70 +145,6 @@ class OnboardingScreen extends StatelessWidget {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   final mediaquery = MediaQuery.of(context).size;
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       title: const Text('appbar'),
-  //     ),
-  //     body: SizedBox(
-  //       width: mediaquery.width,
-  //       height: mediaquery.height,
-  //       child: Column(
-  //         children: [
-  //           SizedBox(
-  //             height: mediaquery.height * 0.6,
-  //             child: ListView(scrollDirection: Axis.horizontal, children: [
-  //               OnboardingWidget(
-  //                 description: '',
-  //                 mediaQuery: mediaquery,
-  //                 imageUrl: AppImages.onboarding_1,
-  //               ),
-  //               OnboardingWidget(
-  //                 description: '',
-  //                 mediaQuery: mediaquery,
-  //                 imageUrl: AppImages.onboarding_1,
-  //               ),
-  //               OnboardingWidget(
-  //                 description: '',
-  //                 mediaQuery: mediaquery,
-  //                 imageUrl: AppImages.onboarding_1,
-  //               ),
-  //             ]),
-  //           ),
-  //           Row(
-  //             children: [
-  //               const Spacer(),
-  //               IconButton(
-  //                   onPressed: () {},
-  //                   icon: const Icon(
-  //                     Icons.circle,
-  //                     size: 10,
-  //                   )),
-  //               IconButton(
-  //                   onPressed: () {},
-  //                   icon: const Icon(
-  //                     Icons.circle,
-  //                     size: 10,
-  //                   )),
-  //               IconButton(
-  //                   onPressed: () {},
-  //                   icon: const Icon(
-  //                     Icons.circle,
-  //                     size: 10,
-  //                   )),
-  //               const Spacer(),
-  //             ],
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //     //floatingActionButton: FloatingActionButton(onPressed: (){},),
-  //   );
-  // }
-
 }
 
 class OnboardingWidget extends StatelessWidget {
