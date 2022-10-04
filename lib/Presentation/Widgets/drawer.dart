@@ -144,7 +144,7 @@ class _MyDrawer2State extends State<MyDrawer> {
         Navigator.pop(context);
       },
       child: SvgPicture.asset(
-        AssetIcons.cancel,
+        AppIcons.newLabel,
         height: 25,
         width: 25,
         color: Colors.white,

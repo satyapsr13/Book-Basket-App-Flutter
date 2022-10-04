@@ -1,6 +1,15 @@
-import 'package:book_basket/Constants/locations.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:book_basket/Constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:book_basket/Constants/locations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,19 +18,115 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  bool isFilterActive = false;
+  int t = 0;
+  void fun1() {
+    Timer(Duration(seconds: 5), () {
+      log("-----------------after 5 min----------");
+    });
+  }
+
+  void fun2() async {
+    Timer(Duration(seconds: 1), () {
+      log("-----------------after 1 min----------");
+    });
+  }
+
+  bool showFilterButton = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    // fun2();
+    // log("-----------------middle----------");
+
+    // fun1();
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      setState(() {
+        t++;
+      });
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
     return Scaffold(
       // extendBody: true,
       extendBodyBehindAppBar: true,
-
+      // drawer: Drawer(),
       appBar: AppBar(
         // excludeHeaderSemantics: true,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Container(
+        title: InkWell(
+          onTap: () {
+            // model bottom sheet
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                // rounded shape
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                builder: (context) => Container(
+                      height: mq.height * 0.75,
+                      color: Colors.white.withOpacity(0.1),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            height: 5,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Select Location",
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: 20,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    title: Text(
+                                      "locations[index]",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(
+                                              color: Colors.black,
+                                              fontSize: 16),
+                                    ),
+                                  );
+                                }),
+                          ),
+                        ],
+                      ),
+                    ));
+          },
           child: Row(
             children: [
               const Padding(
@@ -74,54 +179,289 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Container(
-            width: mq.width,
-            // height: mq.height * 0.3,
-            child: Image.asset(
-              AppImages.carousel_1,
-              fit: BoxFit.contain,
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              SizedBox(
+                width: mq.width,
+                height: mq.height * 0.3,
+                child: Image.asset(
+                  (t & 1) == 0 ? AppImages.carousel_1 : AppImages.carousel_2,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Visibility(
+                visible: showFilterButton,
+                child: Positioned(
+                  bottom: -25,
+                  left: mq.width * 0.3 / 2,
+                  child: Container(
+                    width: mq.width * 0.7,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                            width: 2, color: Colors.grey.withOpacity(0.5))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: SvgPicture.asset(
+                                AppIcons.newLabel,
+                                height: 21,
+                                width: 20,
+                                color: isFilterActive
+                                    ? const Color(0xff428DFC)
+                                    : const Color(0xff3E4A59),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  isFilterActive = true;
+                                });
+                              },
+                              child: Text(
+                                'Latest Book',
+                                style: TextStyle(
+                                  color: isFilterActive
+                                      ? const Color(0xff428DFC)
+                                      : const Color(0xff3E4A59),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          color: Colors.black,
+                          width: 1,
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: SvgPicture.asset(
+                                AppIcons.newLabel,
+                                height: 21,
+                                width: 20,
+                                color: !isFilterActive
+                                    ? const Color(0xff428DFC)
+                                    : const Color(0xff3E4A59),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  isFilterActive = false;
+                                });
+                              },
+                              child: Text(
+                                'All Books',
+                                style: TextStyle(
+                                  color: !isFilterActive
+                                      ? const Color(0xff428DFC)
+                                      : const Color(0xff3E4A59),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Expanded(
+            child: GridView.builder(
+              itemCount: 20,
+              itemBuilder: (ctx, index) => BooksWidget(
+                bookImageUrl: 'https://picsum.photos/200',
+                bookBackGroundColors: bookBackGroundColors[index % 4]!,
+                bookPrice: 5 + index,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 4 / 5,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
+              ),
             ),
           ),
-          // Expanded(
-          //   child: FlutterCarousel(
-          //     items: [
-          //       Container(
-          //         width: mq.width,
-          //         // height: mq.height * 0.3,
-          //         child: Image.asset(
-          //           AppImages.carousel_2,
-          //           fit: BoxFit.contain,
-          //         ),
-          //       ),
-          //       Container(
-          //         width: mq.width,
-          //         // height: mq.height * 0.4,
-          //         child: Image.asset(
-          //           AppImages.carousel_2,
-          //           fit: BoxFit.contain,
-          //         ),
-          //       ),
-          //     ],
-          //     // carouselController: buttonCarouselController,
-          //     options: CarouselOptions(
-          //       autoPlay: true,
-          //       enlargeCenterPage: true,
-          //       // viewportFraction: 0.9,
-          //       // aspectRatio: 2.0,
-          //       autoPlayAnimationDuration: const Duration(seconds: 2),
-
-          //       initialPage: 0,
-          //     ),
-          //   ),
-          // ),
-
-          const Text(
-            'lorem',
-            style: TextStyle(),
-          ),
+          SizedBox(height: 40),
         ],
       ),
       // floatingActionButton: FloatingActionButton(onPressed: (){},),
+    );
+  }
+}
+
+class BooksWidget extends StatelessWidget {
+  // const BooksWidget({Key? key}) : super(key: key);
+  final String bookImageUrl;
+  final Color bookBackGroundColors;
+  final num bookPrice;
+  BooksWidget({
+    Key? key,
+    required this.bookImageUrl,
+    required this.bookBackGroundColors,
+    required this.bookPrice,
+  }) : super(key: key);
+  String bookTitle = 'ALL IN ONE ENGLISH CORE';
+  @override
+  Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              width: mq.width * 0.4,
+              // height: mq.height * 0.4,
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: mq.width * 0.4,
+                    // height: mq.height * 0.15,
+                    decoration: BoxDecoration(
+                      color: bookBackGroundColors,
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 20),
+                        SizedBox(
+                          width: mq.width * 0.25,
+                          height: mq.width * 0.25,
+                          child: Image.network(
+                            bookImageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    bookTitle,
+                    style: const TextStyle(fontSize: 10),
+                  ),
+                  Row(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Class 12th",
+                            style: const TextStyle(fontSize: 10),
+                          ),
+                          Text(
+                            "edition: 2018-19",
+                            style: const TextStyle(fontSize: 8),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: 50,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: bookBackGroundColors,
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Center(
+                          child: FittedBox(
+                            child: Text(
+                              '₹ $bookPrice',
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: 25,
+                          // width: 75,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.shopping_bag,
+                                size: 15,
+                              ),
+                              FittedBox(
+                                child: Text(
+                                  'Add to Cart',
+                                  style: const TextStyle(fontSize: 10),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: 25,
+                          // width: 75,
+                          decoration: BoxDecoration(
+                            color: Color(0xff428DFC),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Row(
+                            children: [
+                              FittedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    'Chat now',
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -170,8 +510,44 @@ class SearchScreen extends SearchDelegate {
       height: 100,
       width: 100,
       color: Colors.green,
-      child: const Center(
-        child: Text('suggestions'),
+      child: ListView(
+        children: const [
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+          Text('item 1'),
+          Text('item 2'),
+          Text('item 3'),
+          Text('item 4'),
+          Text('item 5'),
+        ],
       ),
     );
     // throw UnimplementedError();

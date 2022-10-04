@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const String addTodoRoute = "/add";
 const String editTodoRoute = "/edit";
 
@@ -41,4 +43,10 @@ Map<String, int> weekDayToIntConverter = {
   "Friday": 5,
   "Saturday": 6,
   // 7: "Sunday",
+};
+Map<int, Color> bookBackGroundColors = {
+  0: const Color(0xffFD694C),
+  1: const Color(0xff33556A),
+  2: const Color(0xff3C3773),
+  3: const Color(0xffFF9834),
 };
