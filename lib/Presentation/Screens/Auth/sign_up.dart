@@ -45,17 +45,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: mq.width * 0.8,
-                  height: mq.height * 0.3,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(AppImages.onboarding_1),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                // SizedBox(height: 20),
+                // Container(
+                //   width: mq.width * 0.8,
+                //   height: mq.height * 0.3,
+                //   decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //       image: AssetImage(AppImages.onboarding_1),
+                //       fit: BoxFit.contain,
+                //     ),
+                //   ),
+                // ),
+                SizedBox(height: mq.height * 0.15),
                 Text(
                   'Sign Up',
                   style: TextStyle(fontSize: 30, color: AppColors.primaryColor),

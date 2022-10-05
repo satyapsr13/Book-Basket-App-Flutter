@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:book_basket/Presentation/Screens/Auth/log_in.dart';
 import 'package:book_basket/Presentation/Screens/Auth/sign_up.dart';
+import 'package:book_basket/Presentation/Screens/Books/book_selling_form_screen.dart';
+import 'package:book_basket/Presentation/Screens/Books/books_details_screen.dart';
+import 'package:book_basket/Presentation/Screens/Cart/cart_screen.dart';
 import 'package:book_basket/Presentation/Screens/Home/home_screen.dart';
 import 'package:book_basket/Presentation/Screens/IntroScreen/onboarding_screen.dart';
+import 'package:book_basket/Presentation/Screens/Profile/user_profile_screen.dart';
 // ignore_for_file: prefer_const_constructors
 // @AdaptiveAutoRouter(
 //   replaceInRouteName: 'Page,Route',
@@ -44,6 +48,10 @@ import 'package:book_basket/Presentation/Screens/IntroScreen/onboarding_screen.d
     AutoRoute(page: SignUpScreen),
     AutoRoute(page: LoginScreen),
     AutoRoute(page: HomeScreen),
+    AutoRoute(page: BookDetailsScreen),
+    AutoRoute(page: BookDetailsFormScreen),
+    AutoRoute(page: CartScreen),
+    AutoRoute(page: UserProfileScreen),
     // AutoRoute(page: SignalScreen),
     // AutoRoute(page: BasicInfo),
     // AutoRoute(page: BPReading),

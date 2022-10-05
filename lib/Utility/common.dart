@@ -81,6 +81,13 @@ String? emailValidation(String? string) {
   return null;
 }
 
+String? nullValidation(String? string) {
+  if (string == null || string.isEmpty) {
+    return "This field can not be empty";
+  }
+  return null;
+}
+
 String getPlainPhoneNumber(String phoneNumber) {
   return phoneNumber
       .trim()

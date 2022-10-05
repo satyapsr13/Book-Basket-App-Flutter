@@ -4,6 +4,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:book_basket/Constants/constants.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:book_basket/Presentation/Widgets/bottom_navigation_bar.dart';
+import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
@@ -43,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen>
     // log("-----------------middle----------");
 
     // fun1();
-    Timer.periodic(Duration(seconds: 5), (timer) {
+    Timer.periodic(Duration(seconds: 20), (timer) {
       setState(() {
         t++;
       });
@@ -177,6 +181,22 @@ class _HomeScreenState extends State<HomeScreen>
               )),
         ],
       ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          context.pushRoute(BookDetailsFormScreen());
+        },
+        child: const Icon(
+          Icons.add,
+          size: 30,
+          color: Colors.yellow,
+        ),
+      ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        currentIndex: 0,
+      ),
       body: Column(
         children: [
           Stack(
@@ -284,10 +304,15 @@ class _HomeScreenState extends State<HomeScreen>
           Expanded(
             child: GridView.builder(
               itemCount: 20,
-              itemBuilder: (ctx, index) => BooksWidget(
-                bookImageUrl: 'https://picsum.photos/200',
-                bookBackGroundColors: bookBackGroundColors[index % 4]!,
-                bookPrice: 5 + index,
+              itemBuilder: (ctx, index) => InkWell(
+                onTap: () {
+                  context.pushRoute(BookDetailsScreen());
+                },
+                child: BooksWidget(
+                  bookImageUrl: 'https://picsum.photos/200',
+                  bookBackGroundColors: bookBackGroundColors[index % 4]!,
+                  bookPrice: 5 + index,
+                ),
               ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -297,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
-          SizedBox(height: 40),
+          // SizedBox(height: 40),
         ],
       ),
       // floatingActionButton: FloatingActionButton(onPressed: (){},),

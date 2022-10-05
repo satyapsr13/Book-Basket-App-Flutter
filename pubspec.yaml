@@ -60,6 +60,8 @@ dependencies:
   # awesome_notifications: ^0.6.21
   flutter_carousel_widget: ^1.2.0
   equatable: ^2.0.5
+  image_picker: ^0.8.5+3
+  floating_bottom_navigation_bar: ^1.5.2
 
 dev_dependencies:
   flutter_test:

@@ -80,8 +80,8 @@ Future<void> main() async {
               path: 'assets/translations',
               supportedLocales: const [
                 Locale('en'),
-                Locale('fil'),
-                Locale('fil', 'ph')
+                // Locale('fil'),
+                // Locale('fil', 'ph')
               ],
               fallbackLocale: const Locale('en'),
               useFallbackTranslations: true,

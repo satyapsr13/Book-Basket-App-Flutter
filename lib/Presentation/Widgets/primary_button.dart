@@ -80,14 +80,14 @@ class PrimaryButton extends StatelessWidget {
           ? ElevatedButton.styleFrom(
               primary: AppColors.primaryColor,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
+                  borderRadius: BorderRadius.circular(25)),
               padding: const EdgeInsets.all(14),
               elevation: 0,
             )
           : ElevatedButton.styleFrom(
               primary: AppColors.primaryColor,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)),
+                  borderRadius: BorderRadius.circular(25)),
               padding: const EdgeInsets.all(14),
               elevation: 0,
               onSurface: Colors.grey,
@@ -95,4 +95,3 @@ class PrimaryButton extends StatelessWidget {
     );
   }
 }
- 
