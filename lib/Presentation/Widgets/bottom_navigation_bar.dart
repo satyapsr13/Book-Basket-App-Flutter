@@ -19,7 +19,7 @@ class MyBottomNavigationBar extends StatelessWidget {
       onTap: (int val) {
         switch (val) {
           case 0:
-            context.pushRoute(HomeScreen());
+            currentIndex == val ? null : context.pushRoute(HomeScreen());
 
             break;
           case 1:
@@ -27,15 +27,15 @@ class MyBottomNavigationBar extends StatelessWidget {
 
             break;
           case 2:
-            // context.pushRoute(ComingSoonScreen());
+            currentIndex == val ? null : context.pushRoute(UserProfileScreen());
 
             break;
           case 3:
-            context.pushRoute(CartScreen());
+          currentIndex == val ? null :   context.pushRoute(CartScreen());
 
             break;
           default:
-            context.pushRoute(HomeScreen());
+            currentIndex == val ? null : context.pushRoute(HomeScreen());
         } //returns tab id which is user tapped
       },
       backgroundColor: Colors.white,
@@ -43,8 +43,11 @@ class MyBottomNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       items: [
         FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-        FloatingNavbarItem(icon: Icons.chat_bubble_outline, title: 'Chats'),
-        FloatingNavbarItem(icon: Icons.person, title: 'Profile'),
+        FloatingNavbarItem(icon: Icons.message_rounded, title: 'Chats'),
+        FloatingNavbarItem(
+          icon: Icons.person,
+          title: 'Profile',
+        ),
         FloatingNavbarItem(icon: Icons.shopping_bag, title: 'Cart'),
       ],
     );

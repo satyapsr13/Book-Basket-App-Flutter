@@ -61,7 +61,7 @@ class AppRouter extends _i9.RootStackRouter {
     },
     UserProfileScreen.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.UserProfileScreen());
+          routeData: routeData, child:   _i8.UserProfileScreen());
     }
   };
 

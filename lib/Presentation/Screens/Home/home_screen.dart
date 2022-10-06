@@ -3,17 +3,14 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:book_basket/Constants/constants.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:book_basket/Constants/colors.dart';
+import 'package:book_basket/Constants/constants.dart';
+import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Presentation/Widgets/bottom_navigation_bar.dart';
 import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:book_basket/Constants/locations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,6 +36,28 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   bool showFilterButton = true;
+  List<String> indianCitiesList = [
+    "Bhopal",
+    "Indore",
+    "Bengaluru",
+    "Mumbai",
+    "Delhi",
+    "Kolkata",
+    "Chennai",
+    "Pune",
+    "Jaipur",
+    "Lucknow",
+    "Kanpur",
+    "Nagpur",
+    "Patna",
+    "Agra",
+    "Vadodara",
+    "Ghaziabad",
+    "Ludhiana",
+    "Coimbatore",
+    "Madurai",
+    "Nashik"
+  ];
 
   @override
   void initState() {
@@ -56,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
   }
 
+  String userAddress = 'Sadar Bazar,461001';
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
@@ -109,14 +129,17 @@ class _HomeScreenState extends State<HomeScreen>
                           ),
                           Expanded(
                             child: ListView.builder(
-                                itemCount: 20,
+                                itemCount: indianCitiesList.length,
                                 itemBuilder: (context, index) {
                                   return ListTile(
                                     onTap: () {
+                                      setState(() {
+                                        userAddress = indianCitiesList[index];
+                                      });
                                       Navigator.of(context).pop();
                                     },
                                     title: Text(
-                                      "locations[index]",
+                                      indianCitiesList[index],
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1!
@@ -142,9 +165,9 @@ class _HomeScreenState extends State<HomeScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Text(
-                        'Sadar Bazar,461001',
+                        userAddress,
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                       Icon(Icons.arrow_drop_down_rounded),
@@ -188,10 +211,10 @@ class _HomeScreenState extends State<HomeScreen>
         onPressed: () {
           context.pushRoute(BookDetailsFormScreen());
         },
-        child: const Icon(
+        child: Icon(
           Icons.add,
           size: 30,
-          color: Colors.yellow,
+          color: AppColors.primaryColor,
         ),
       ),
       bottomNavigationBar: MyBottomNavigationBar(
@@ -322,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
-          // SizedBox(height: 40),
+          SizedBox(height: 40),
         ],
       ),
       // floatingActionButton: FloatingActionButton(onPressed: (){},),
@@ -531,48 +554,73 @@ class SearchScreen extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Container(
-      height: 100,
-      width: 100,
-      color: Colors.green,
-      child: ListView(
-        children: const [
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-          Text('item 1'),
-          Text('item 2'),
-          Text('item 3'),
-          Text('item 4'),
-          Text('item 5'),
-        ],
+    return Expanded(
+      child: Container(
+        // height: 100,
+        // width: 100,
+        // color: Colors.,
+        child: Center(
+          child: Row(
+            children: [
+              SizedBox(
+                height: 20,
+                width: 20,
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        query = 'NCERT class 12th';
+                      },
+                      child: Text(
+                        'NCERT class 12th',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        query = 'NCERT class 11th';
+                      },
+                      child: Text(
+                        'NCERT class 11th',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        query = 'NCERT class 10th';
+                      },
+                      child: Text(
+                        'NCERT class 10th',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        query = 'NCERT class 9th';
+                      },
+                      child: Text(
+                        'NCERT class 9th',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+
+                ),
+              ),
+              const Spacer(),
+            ],
+          ),
+        ),
       ),
     );
     // throw UnimplementedError();

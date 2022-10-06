@@ -122,7 +122,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routerDelegate: _appRouter.delegate(
             // initialRoutes: [isLoggedIn ? HomeScreen() : OnboardingScreen()]),
-            initialRoutes: [CartScreen()]),
+            initialRoutes: [LoginScreen()]),
 
         routeInformationParser:
             _appRouter.defaultRouteParser(includePrefixMatches: true),
