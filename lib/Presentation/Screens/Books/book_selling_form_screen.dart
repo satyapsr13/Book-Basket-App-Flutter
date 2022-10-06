@@ -30,7 +30,7 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
-    var labelText2 = 'Title';
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -235,7 +235,37 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
                 children: [
                   const Spacer(),
                   PrimaryButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // show dialogue
+
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          // title: Text("Show Alert Dialog Box"),
+                          content: Text(
+                              "Are you sure you want to submit this for sell?"),
+                          actions: <Widget>[
+                            SecondaryButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              buttonText: "Cancel",
+                              widthSize: 70,
+                            ),
+                            const Spacer(
+
+                            ),
+                            PrimaryButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              buttonText: "Sell",
+                              widthSize: 70,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                     buttonText: "Sell",
                     widthSize: mq.width * 0.5,
                   ),

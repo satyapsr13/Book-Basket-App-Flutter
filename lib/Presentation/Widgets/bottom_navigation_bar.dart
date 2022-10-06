@@ -31,7 +31,7 @@ class MyBottomNavigationBar extends StatelessWidget {
 
             break;
           case 3:
-            // context.pushRoute(UserProfileScreen());
+            context.pushRoute(CartScreen());
 
             break;
           default:
