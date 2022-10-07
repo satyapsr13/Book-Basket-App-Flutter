@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:auto_route/auto_route.dart';
 import 'package:book_basket/Constants/colors.dart';
 // import 'package:book_basket/Constants/AppImages.dart';
 import 'package:book_basket/Constants/locations.dart';
+import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({Key? key}) : super(key: key);
@@ -14,131 +17,154 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
 // scroll controller
   final PageController _pageController = PageController();
-
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Stack(
+      persistentFooterButtons: [
+        skipAndNextButton(mq, context),
+      ],
+      body: Column(
         children: [
-          PageView(
-            controller: _pageController,
+          // SizedBox(height: 50),
+          SizedBox(height: mq.height * 0.1),
+          Visibility(
+            visible: (index % 3) == 0,
+            child: Container(
+              width: mq.width,
+              height: mq.height * 0.6,
+              child: Center(
+                  child: Lottie.asset(
+                AppLottie.shareBookMoney,
+                fit: BoxFit.fitHeight,
+              )),
+            ),
+          ),
+          Visibility(
+            visible: (index % 3) == 1,
+            child: Container(
+              width: mq.width * 0.8,
+              height: mq.height * 0.4,
+              child: Lottie.asset(AppLottie.chatting, fit: BoxFit.cover),
+            ),
+          ),
+          Visibility(
+            visible: (index % 3) == 2,
+            child: Container(
+              width: mq.width * 0.8,
+              height: mq.height * 0.4,
+              child:
+                  Lottie.asset(AppLottie.locationAnimation, fit: BoxFit.cover),
+            ),
+          ),
+          // SizedBox(),
+        ],
+      ),
+    );
+  }
+
+  Center skipAndNextButton(Size mq, BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            index % 3 == 0
+                ? 'Purchasing and Selling of old books is possible at same platform.'
+                : index % 3 == 1
+                    ? "Personalised chat option with the each seller."
+                    : " No delivery charges issues to buy and sell books. Find books nearby you in your city.",
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 20,
+              color: Color(0xff3E4A59),
+            ),
+          ),
+          SizedBox(height: 5),
+          Row(
             children: [
-              PageView(
-                children: [
-                  Container(
-                    width: mq.width * 0.8,
-                    height: mq.height * 0.4,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          AppImages.onboarding_1,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text(
-                      'Page 1',
-                      style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: mq.width * 0.8,
-                    height: mq.height * 0.4,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          AppImages.onboarding_1,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text(
-                      'Page 2',
-                      style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: mq.width * 0.8,
-                    height: mq.height * 0.4,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          AppImages.onboarding_1,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Text(
-                      'Page 3',
-                      style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: mq.width * 0.8,
-                    height: mq.height * 0.4,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          AppImages.onboarding_1,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.circle,
+                  size: (index % 3) != 0 ? 20 : 30,
+                  color:
+                      (index % 3) != 0 ? Colors.grey : AppColors.primaryColor,
+                ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.circle,
+                  size: (index % 3) != 1 ? 20 : 30,
+                  color:
+                      (index % 3) != 1 ? Colors.grey : AppColors.primaryColor,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.circle,
+                  size: (index % 3) != 2 ? 20 : 30,
+                  color:
+                      (index % 3) != 2 ? Colors.grey : AppColors.primaryColor,
+                ),
+              ),
+              const Spacer(),
             ],
           ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MaterialButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Skip",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
+          SizedBox(height: 25),
+          Container(
+            width: mq.width,
+            height: 100,
+            color: Colors.white,
+            child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Spacer(
+                  flex: 1,
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    context.replaceRoute(LoginScreen());
+                  },
+                  child: Text(
+                    "Skip",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  MaterialButton(
-                    onPressed: () {
+                ),
+                const Spacer(
+                  flex: 3,
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    if ((index % 3) == 2) {
+                      context.replaceRoute(LoginScreen());
+                    } else {
                       setState(() {
-                        _pageController.nextPage(
-                            duration: Duration(seconds: 1),
-                            curve: Curves.bounceInOut);
+                        index++;
                       });
-                    },
-                    child: Text(
-                      "Next",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    }
+                  },
+                  child: Text(
+                    "Next",
+                    style: TextStyle(
+                      color: AppColors.primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ],
-              ),
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+              ],
             ),
           ),
         ],

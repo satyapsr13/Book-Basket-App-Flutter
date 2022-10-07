@@ -177,37 +177,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
 
-                    SizedBox(
-                      width: mq.width * 0.7,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {},
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xff33556A),
+                            )),
+                        width: mq.width * 0.7,
+                        height: 50,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              AppImages.carousel_1,
+                              AppImages.google,
                               width: 20,
+                              height: 20,
                             ),
-                            const SizedBox(width: 10),
+                            SizedBox(width: 10),
                             Text(
-                              "Sign with Google",
+                              "Signup with Google",
                               style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
+                                fontSize: 15, color: Color(0xff33556A),
+
+                                // color: Colors.white,
                               ),
                             )
                           ],
-                        ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color(0xffE74C3C),
-                          ),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
                         ),
                       ),
                     ),

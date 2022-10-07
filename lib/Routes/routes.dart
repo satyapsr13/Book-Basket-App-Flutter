@@ -6,6 +6,7 @@ import 'package:book_basket/Presentation/Screens/Books/books_details_screen.dart
 import 'package:book_basket/Presentation/Screens/Cart/cart_screen.dart';
 import 'package:book_basket/Presentation/Screens/Home/home_screen.dart';
 import 'package:book_basket/Presentation/Screens/IntroScreen/onboarding_screen.dart';
+import 'package:book_basket/Presentation/Screens/IntroScreen/splash_screen.dart';
 import 'package:book_basket/Presentation/Screens/Profile/user_profile_screen.dart';
 // ignore_for_file: prefer_const_constructors
 // @AdaptiveAutoRouter(
@@ -52,6 +53,7 @@ import 'package:book_basket/Presentation/Screens/Profile/user_profile_screen.dar
     AutoRoute(page: BookDetailsFormScreen),
     AutoRoute(page: CartScreen),
     AutoRoute(page: UserProfileScreen),
+    AutoRoute(page: SplashScreen),
     // AutoRoute(page: SignalScreen),
     // AutoRoute(page: BasicInfo),
     // AutoRoute(page: BPReading),

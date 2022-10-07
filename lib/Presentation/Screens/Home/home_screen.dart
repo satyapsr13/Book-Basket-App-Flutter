@@ -80,12 +80,11 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
     return Scaffold(
-      // extendBody: true,
+
       extendBodyBehindAppBar: true,
-      // drawer: Drawer(),
+
       appBar: AppBar(
-        // excludeHeaderSemantics: true,
-        automaticallyImplyLeading: false,
+         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: InkWell(
@@ -198,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen>
           IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.notification_important,
+                Icons.notifications,
                 color: Colors.white,
                 size: 20,
               )),
@@ -321,11 +320,10 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ],
           ),
-          SizedBox(
-            height: 30,
-          ),
+          const SizedBox(height: 30),
           Expanded(
             child: GridView.builder(
+              clipBehavior:Clip.hardEdge,
               itemCount: 20,
               itemBuilder: (ctx, index) => InkWell(
                 onTap: () {
@@ -345,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
-          SizedBox(height: 40),
+          // SizedBox(height: 40),
         ],
       ),
       // floatingActionButton: FloatingActionButton(onPressed: (){},),
@@ -369,146 +367,151 @@ class BooksWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              width: mq.width * 0.4,
-              // height: mq.height * 0.4,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: mq.width * 0.4,
-                    // height: mq.height * 0.15,
-                    decoration: BoxDecoration(
-                      color: bookBackGroundColors,
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        SizedBox(
-                          width: mq.width * 0.25,
-                          height: mq.width * 0.25,
-                          child: Image.network(
-                            bookImageUrl,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    bookTitle,
-                    style: const TextStyle(fontSize: 10),
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: Card(
+        elevation: 4,
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                width: mq.width * 0.4,
+                // height: mq.height * 0.4,
+                color: Colors.white,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: mq.width * 0.4,
+                      // height: mq.height * 0.15,
+                      decoration: BoxDecoration(
+                        color: bookBackGroundColors,
+                      ),
+                      child: Column(
                         children: [
-                          Text(
-                            "Class 12th",
-                            style: const TextStyle(fontSize: 10),
-                          ),
-                          Text(
-                            "edition: 2018-19",
-                            style: const TextStyle(fontSize: 8),
+                          SizedBox(height: 20),
+                          SizedBox(
+                            width: mq.width * 0.25,
+                            height: mq.width * 0.25,
+                            child: Image.network(
+                              bookImageUrl,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ],
                       ),
-                      const Spacer(),
-                      Container(
-                        width: 50,
-                        height: 25,
-                        decoration: BoxDecoration(
-                          color: bookBackGroundColors,
-                          borderRadius: BorderRadius.circular(3),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      bookTitle,
+                      style: const TextStyle(fontSize: 10),
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Class 12th",
+                              style: const TextStyle(fontSize: 10),
+                            ),
+                            Text(
+                              "edition: 2018-19",
+                              style: const TextStyle(fontSize: 8),
+                            ),
+                          ],
                         ),
-                        child: Center(
-                          child: FittedBox(
-                            child: Text(
-                              '₹ $bookPrice',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
+                        const Spacer(),
+                        Container(
+                          width: 50,
+                          height: 25,
+                          decoration: BoxDecoration(
+                            color: bookBackGroundColors,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Center(
+                            child: FittedBox(
+                              child: Text(
+                                '₹ $bookPrice',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 25,
-                          // width: 75,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.shopping_bag,
-                                size: 15,
-                              ),
-                              FittedBox(
-                                child: Text(
-                                  'Add to Cart',
-                                  style: const TextStyle(fontSize: 10),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            context.pushRoute(CartScreen());
+                          },
+                          child: Container(
+                            height: 25,
+                            // width: 75,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.shopping_bag,
+                                  size: 15,
                                 ),
-                              ),
-                            ],
+                                FittedBox(
+                                  child: Text(
+                                    'Add to Cart',
+                                    style: const TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 25,
-                          // width: 75,
-                          decoration: BoxDecoration(
-                            color: Color(0xff428DFC),
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: Row(
-                            children: [
-                              FittedBox(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Text(
-                                    'Chat now',
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 25,
+                            // width: 75,
+                            decoration: BoxDecoration(
+                              color: Color(0xff428DFC),
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: Row(
+                              children: [
+                                FittedBox(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Text(
+                                      'Chat now',
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                ],
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -614,7 +617,6 @@ class SearchScreen extends SearchDelegate {
                       ),
                     ),
                   ],
-
                 ),
               ),
               const Spacer(),
