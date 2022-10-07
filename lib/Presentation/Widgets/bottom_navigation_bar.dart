@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:auto_route/auto_route.dart';
+import 'package:book_basket/Presentation/Widgets/coming_soon_label.dart';
 import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class MyBottomNavigationBar extends StatelessWidget {
 
             break;
           case 3:
-          currentIndex == val ? null :   context.pushRoute(CartScreen());
+            currentIndex == val ? null : context.pushRoute(CartScreen());
 
             break;
           default:
@@ -43,7 +44,16 @@ class MyBottomNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       items: [
         FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-        FloatingNavbarItem(icon: Icons.message_rounded, title: 'Chats'),
+        FloatingNavbarItem(
+          icon: Icons.message_rounded,
+          title: 'Chats',
+          customWidget: CommingSoonLabel(
+            child: Icon(
+              Icons.message_rounded,
+              color: Color(0xff0A192F).withOpacity(0.4),
+            ),
+          ),
+        ),
         FloatingNavbarItem(
           icon: Icons.person,
           title: 'Profile',

@@ -29,12 +29,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Column(
         children: [
           // SizedBox(height: 50),
-          SizedBox(height: mq.height * 0.1),
+          SizedBox(height: mq.height * 0.08),
           Visibility(
             visible: (index % 3) == 0,
             child: Container(
               width: mq.width,
-              height: mq.height * 0.6,
+              height: mq.height * 0.4,
               child: Center(
                   child: Lottie.asset(
                 AppLottie.shareBookMoney,
@@ -55,8 +55,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Container(
               width: mq.width * 0.8,
               height: mq.height * 0.4,
-              child:
-                  Lottie.asset(AppLottie.locationAnimation, fit: BoxFit.cover),
+              child: Lottie.asset(AppLottie.locationAnimation,
+                  fit: BoxFit.cover),
             ),
           ),
           // SizedBox(),

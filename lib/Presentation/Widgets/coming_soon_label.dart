@@ -20,7 +20,7 @@ class CommingSoonLabel extends StatelessWidget {
           top: -10,
           child: Container(
             height: 18,
-            width: 60,
+            width: 40,
             decoration: BoxDecoration(
               color: Colors.amber,
               borderRadius: BorderRadius.circular(10),

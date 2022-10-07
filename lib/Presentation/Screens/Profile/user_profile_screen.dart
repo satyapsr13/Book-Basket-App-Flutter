@@ -57,157 +57,159 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       bottomNavigationBar: MyBottomNavigationBar(
         currentIndex: 2,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 20),
-          CircleAvatar(
-            radius: 30,
-            backgroundColor: AppColors.primaryColor,
-            child: Text(
-              userName.toString().substring(0, 1),
-              style: const TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ),
-          // SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Icon(Icons.person,
-                          size: 20, color: Color(0xff3E4A59)),
-                    ),
-                    Text(
-                      userName,
-                      style: const TextStyle(
-                          fontSize: 14, color: Color(0xff3E4A59)),
-                    ),
-                  ],
-                ),
-                // SizedBox(height: 5),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Icon(Icons.mail,
-                          size: 20, color: Color(0xff3E4A59)),
-                    ),
-                    Text(
-                      userEmail,
-                      style: const TextStyle(
-                          fontSize: 14, color: Color(0xff3E4A59)),
-                    ),
-                  ],
-                ),
-                // SizedBox(height: 5),/
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Icon(Icons.location_history),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '461001',
-                          style: const TextStyle(),
-                        ),
-                        Text(
-                          'Sadar bazar,Hoshangabad',
-                          style: const TextStyle(),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                // SizedBox(height: 5),
-              ],
-            ),
-          ),
-          SizedBox(height: 5),
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Divider(
-                color: Colors.grey,
-                thickness: 2,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: AppColors.primaryColor,
+              child: Text(
+                userName.toString().substring(0, 1),
+                style: const TextStyle(color: Colors.white, fontSize: 30),
               ),
-              Positioned(
-                bottom: -20,
-                left: mq.width * 0.15,
-                child: Container(
-                  width: mq.width * 0.7,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                          width: 2, color: Colors.grey.withOpacity(0.5))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            ),
+            // SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            isFilterActive = true;
-                          });
-                        },
-                        child: Text(
-                          'Books on Sell',
-                          style: TextStyle(
-                            color: isFilterActive
-                                ? const Color(0xff428DFC)
-                                : const Color(0xff3E4A59),
-                          ),
-                        ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Icon(Icons.person,
+                            size: 20, color: Color(0xff3E4A59)),
                       ),
-                      Container(
-                        color: Colors.black,
-                        width: 1,
-                        height: 30,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            isFilterActive = false;
-                          });
-                        },
-                        child: Text(
-                          'Sold Books ',
-                          style: TextStyle(
-                            color: !isFilterActive
-                                ? const Color(0xff428DFC)
-                                : const Color(0xff3E4A59),
-                          ),
-                        ),
+                      Text(
+                        userName,
+                        style: const TextStyle(
+                            fontSize: 14, color: Color(0xff3E4A59)),
                       ),
                     ],
                   ),
-                ),
+                  // SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Icon(Icons.mail,
+                            size: 20, color: Color(0xff3E4A59)),
+                      ),
+                      Text(
+                        userEmail,
+                        style: const TextStyle(
+                            fontSize: 14, color: Color(0xff3E4A59)),
+                      ),
+                    ],
+                  ),
+                  // SizedBox(height: 5),/
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Icon(Icons.location_history),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '461001',
+                            style: const TextStyle(),
+                          ),
+                          Text(
+                            'Sadar bazar,Hoshangabad',
+                            style: const TextStyle(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // SizedBox(height: 5),
+                ],
               ),
-            ],
-          ),
-          SizedBox(height: 20),
-          Expanded(
-            child: ListView.separated(
-              itemCount: 20,
-              itemBuilder: (ctx, index) => Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: BookOnSellWidget(
-                  mq: mq,
-                ),
-              ),
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(height: 20);
-              },
             ),
-          ),
-          SizedBox(height: 20),
-        ],
+            SizedBox(height: 5),
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Divider(
+                  color: Colors.grey,
+                  thickness: 2,
+                ),
+                Positioned(
+                  bottom: -20,
+                  left: mq.width * 0.15,
+                  child: Container(
+                    width: mq.width * 0.7,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                            width: 2, color: Colors.grey.withOpacity(0.5))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              isFilterActive = true;
+                            });
+                          },
+                          child: Text(
+                            'Books on Sell',
+                            style: TextStyle(
+                              color: isFilterActive
+                                  ? const Color(0xff428DFC)
+                                  : const Color(0xff3E4A59),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: Colors.black,
+                          width: 1,
+                          height: 30,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              isFilterActive = false;
+                            });
+                          },
+                          child: Text(
+                            'Sold Books ',
+                            style: TextStyle(
+                              color: !isFilterActive
+                                  ? const Color(0xff428DFC)
+                                  : const Color(0xff3E4A59),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              child: ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 20,
+                itemBuilder: (ctx, index) => Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: BookOnSellWidget(mq: mq),
+                ),
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(height: 20);
+                },
+              ),
+            ),
+            // SizedBox(height: 20),
+          ],
+        ),
       ),
       //floatingActionButton: FloatingActionButton(onPressed: (){},),
     );

@@ -30,11 +30,11 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
-        leading: const Icon(Icons.card_travel_outlined),
+        // leading: const Icon(Icons.card_travel_outlined),
         title: const Text(
           'My Cart',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.white, 
           ),
         ),
       ),
@@ -45,10 +45,10 @@ class _CartScreenState extends State<CartScreen> {
         onPressed: () {
           context.pushRoute(BookDetailsFormScreen());
         },
-        child: const Icon(
+        child: Icon(
           Icons.add,
           size: 30,
-          color: Colors.yellow,
+          color: AppColors.primaryColor,
         ),
       ),
       bottomNavigationBar: MyBottomNavigationBar(

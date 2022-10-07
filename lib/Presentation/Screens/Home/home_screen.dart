@@ -23,17 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   bool isFilterActive = false;
   int t = 0;
-  void fun1() {
-    Timer(Duration(seconds: 5), () {
-      log("-----------------after 5 min----------");
-    });
-  }
 
-  void fun2() async {
-    Timer(Duration(seconds: 1), () {
-      log("-----------------after 1 min----------");
-    });
-  }
 
   bool showFilterButton = true;
   List<String> indianCitiesList = [
@@ -75,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
   }
 
-  String userAddress = 'Sadar Bazar,461001';
+  String userAddress = 'Sadar Bazar,';
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
@@ -166,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen>
                   Row(
                     children: [
                       Text(
-                        userAddress,
+                        "$userAddress , 461001",
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                       Icon(Icons.arrow_drop_down_rounded),
