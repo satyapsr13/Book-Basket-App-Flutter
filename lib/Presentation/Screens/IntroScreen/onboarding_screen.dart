@@ -16,7 +16,10 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
 // scroll controller
-  final PageController _pageController = PageController();
+  bool isVisible(int widgetIndex, int currentIndex) {
+    return (currentIndex % 3) == widgetIndex;
+  }
+
   int index = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // SizedBox(height: 50),
           SizedBox(height: mq.height * 0.08),
           Visibility(
-            visible: (index % 3) == 0,
-            child: Container(
+            visible: isVisible(0, index),
+            child: SizedBox(
               width: mq.width,
               height: mq.height * 0.4,
               child: Center(
@@ -43,20 +46,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           Visibility(
-            visible: (index % 3) == 1,
-            child: Container(
+            visible: isVisible(1, index),
+            child: SizedBox(
               width: mq.width * 0.8,
               height: mq.height * 0.4,
               child: Lottie.asset(AppLottie.chatting, fit: BoxFit.cover),
             ),
           ),
           Visibility(
-            visible: (index % 3) == 2,
-            child: Container(
+            visible: isVisible(2, index),
+            child: SizedBox(
               width: mq.width * 0.8,
               height: mq.height * 0.4,
-              child: Lottie.asset(AppLottie.locationAnimation,
-                  fit: BoxFit.cover),
+              child:
+                  Lottie.asset(AppLottie.locationAnimation, fit: BoxFit.cover),
             ),
           ),
           // SizedBox(),
@@ -70,9 +73,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Column(
         children: [
           Text(
-            index % 3 == 0
+            isVisible(0, index)
                 ? 'Purchasing and Selling of old books is possible at same platform.'
-                : index % 3 == 1
+                : isVisible(1, index)
                     ? "Personalised chat option with the each seller."
                     : " No delivery charges issues to buy and sell books. Find books nearby you in your city.",
             textAlign: TextAlign.center,
@@ -89,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.circle,
-                  size: (index % 3) != 0 ? 20 : 30,
+                  size: (index % 3) != 0 ? 17 : 25,
                   color:
                       (index % 3) != 0 ? Colors.grey : AppColors.primaryColor,
                 ),
@@ -98,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.circle,
-                  size: (index % 3) != 1 ? 20 : 30,
+                  size: (index % 3) != 1 ? 17 : 25,
                   color:
                       (index % 3) != 1 ? Colors.grey : AppColors.primaryColor,
                 ),
@@ -107,7 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.circle,
-                  size: (index % 3) != 2 ? 20 : 30,
+                  size: (index % 3) != 2 ? 17 : 25,
                   color:
                       (index % 3) != 2 ? Colors.grey : AppColors.primaryColor,
                 ),
@@ -144,7 +147,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    if ((index % 3) == 2) {
+                    if ((isVisible(2, index))) {
                       context.replaceRoute(LoginScreen());
                     } else {
                       setState(() {
@@ -177,32 +180,32 @@ class OnboardingWidget extends StatelessWidget {
   // const OnboardingWidget({Key? key}) : super(key: key);
   final String imageUrl;
   final String description;
-  final Size mediaQuery;
+  final Size mq;
   const OnboardingWidget({
     Key? key,
     required this.imageUrl,
     required this.description,
-    required this.mediaQuery,
+    required this.mq,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: mediaQuery.height * 0.5,
-      width: mediaQuery.width,
+      height: mq.height * 0.5,
+      width: mq.width,
       child: Column(
         children: [
           SizedBox(
-            height: mediaQuery.height * 0.4,
-            width: mediaQuery.width,
+            height: mq.height * 0.4,
+            width: mq.width,
             child: Image.asset(
               imageUrl,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(
-            height: mediaQuery.height * 0.1,
-            width: mediaQuery.width,
+            height: mq.height * 0.1,
+            width: mq.width,
             child: Text(
               description,
               style: const TextStyle(fontSize: 20),
