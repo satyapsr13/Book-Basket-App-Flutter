@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
+import 'dart:developer';
+
 import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Constants/locations.dart';
+import 'package:book_basket/Data/services/google_sign_in.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
 import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:book_basket/Utility/common.dart';
@@ -41,7 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
         Column(
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () async {
+                final userData = await GoogleSignInApi.login();
+
+                log("-------Login With Google ---------${userData.toString()}-------------------");
+              },
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
