@@ -46,7 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
             InkWell(
               onTap: () async {
                 final userData = await GoogleSignInApi.login();
-
+                if (userData != null) {
+                  context.pushRoute(HomeScreen());
+                }
                 log("-------Login With Google ---------${userData.toString()}-------------------");
               },
               child: Container(

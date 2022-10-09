@@ -2,24 +2,35 @@
 
 class BookModel {
   String bookTitle;
+  String bookClass;
   String bookEdition;
+  String bookPublisher;
   String bookAuthor;
   String bookSubject;
   String bookDescription;
-  String bookImage;
+  String bookImageUrl;
+  String bookMRPPrice;
   String bookPrice;
+  String bookPickUpAddress;
+  String bookPickUpPincode;
   // String bookCondition;
   String bookSellerId;
   BookModel({
     required this.bookTitle,
+    required this.bookClass,
     required this.bookEdition,
+    required this.bookPublisher,
     required this.bookAuthor,
     required this.bookSubject,
     required this.bookDescription,
-    required this.bookImage,
+    required this.bookImageUrl,
+    required this.bookMRPPrice,
     required this.bookPrice,
+    required this.bookPickUpAddress,
+    required this.bookPickUpPincode,
     required this.bookSellerId,
   });
+
 
   // String bookSellerEmail;
   // String bookSellerContact;

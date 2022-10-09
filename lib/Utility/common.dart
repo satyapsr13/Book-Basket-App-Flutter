@@ -74,7 +74,7 @@ String? emailValidation(String? string) {
   RegExp emailRegex = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   if (string == null || string.isEmpty) {
-    return null;
+    return "Enter email id";
   } else if (!emailRegex.hasMatch(string)) {
     return "Enter valid email";
   }
