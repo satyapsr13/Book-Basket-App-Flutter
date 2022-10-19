@@ -227,7 +227,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         PrimaryButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              context.pushRoute(HomeScreen());
+                              // context.pushRoute(HomeScreen());
+                              context.pushRoute(SignUpFormScreen());
                             }
                           },
                           buttonText: "LOGIN",

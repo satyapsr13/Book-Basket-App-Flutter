@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:book_basket/Presentation/Screens/Auth/log_in.dart';
 import 'package:book_basket/Presentation/Screens/Auth/sign_up.dart';
+import 'package:book_basket/Presentation/Screens/Auth/sign_up_form.dart';
 import 'package:book_basket/Presentation/Screens/Books/book_selling_form_screen.dart';
 import 'package:book_basket/Presentation/Screens/Books/books_details_screen.dart';
 import 'package:book_basket/Presentation/Screens/Cart/cart_screen.dart';
@@ -54,6 +55,7 @@ import 'package:book_basket/Presentation/Screens/Profile/user_profile_screen.dar
     AutoRoute(page: CartScreen),
     AutoRoute(page: UserProfileScreen),
     AutoRoute(page: SplashScreen),
+    AutoRoute(page: SignUpFormScreen),
     // AutoRoute(page: SignalScreen),
     // AutoRoute(page: BasicInfo),
     // AutoRoute(page: BPReading),
