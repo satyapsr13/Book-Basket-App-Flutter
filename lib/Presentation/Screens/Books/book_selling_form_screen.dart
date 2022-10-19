@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -49,20 +48,15 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
           child: GestureDetector(
             onTap: () {
               // FocusScope.of(context).unfocus();
-              FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus &&
-                  currentFocus.focusedChild != null) {
-                FocusManager.instance.primaryFocus?.unfocus();
-              }
+              FocusScope.of(context).requestFocus(FocusNode());
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Fill the details of your product to be sold:',
-                  style:
-                      TextStyle(color: Color(0xff3E4A59), fontSize: 14),
+                  'Fill the details of your book to be sold:',
+                  style: TextStyle(color: Color(0xff3E4A59), fontSize: 14),
                 ),
                 spaceBetweenTextFields(),
                 SizedBox(
@@ -133,8 +127,8 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
                                 children: [
                                   ClipRRect(
                                     borderRadius: const BorderRadius.only(
-                                      topRight:   Radius.circular(20),
-                                      topLeft:   Radius.circular(20),
+                                      topRight: Radius.circular(20),
+                                      topLeft: Radius.circular(20),
                                     ),
                                     child: SizedBox(
                                       width: mq.width * 0.8,
@@ -172,35 +166,6 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
                                       widthSize: mq.width * 0.75,
                                     ),
                                   )
-                                  // PrimaryButton(onPressed: (){}, buttonText: buttonText)
-                                  // InkWell(
-                                  //   onTap: () {},
-                                  //   child: Container(
-                                  //     decoration: BoxDecoration(
-                                  //         borderRadius: BorderRadius.circular(10),
-                                  //         border: Border.all(
-                                  //           width: 1,
-                                  //           color: Color(0xff33556A),
-                                  //         )),
-                                  //     width: mq.width * 0.7,
-                                  //     height: 50,
-                                  //     child: Row(
-                                  //       mainAxisAlignment:
-                                  //           MainAxisAlignment.center,
-                                  //       children: [
-                                  //         Text(
-                                  //           "Done",
-                                  //           style: TextStyle(
-                                  //             fontSize: 15,
-                                  //             color: Color(0xff33556A),
-
-                                  //             // color: Colors.white,
-                                  //           ),
-                                  //         )
-                                  //       ],
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               ));
                     },
@@ -350,21 +315,22 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
                     PrimaryButton(
                       onPressed: () {
                         // show dialogue
-
-                        AwesomeDialog(
-                          showCloseIcon: true,
-                          dismissOnTouchOutside: false,
-                          context: context,
-                          dialogType: DialogType.question,
-                          animType: AnimType.bottomSlide,
-                          title: 'Want to sell this book?',
-                          // desc: 'Dialog description here.............',
-                          btnOkText: "Sell",
-                          btnCancelOnPress: () {
-                            Navigator.pop(context);
-                          },
-                          btnOkOnPress: () {},
-                        ).show();
+                        if (true) {
+                          AwesomeDialog(
+                            showCloseIcon: true,
+                            dismissOnTouchOutside: false,
+                            context: context,
+                            dialogType: DialogType.question,
+                            animType: AnimType.bottomSlide,
+                            title: 'Want to sell this book?',
+                            // desc: 'Dialog description here.............',
+                            btnOkText: "Sell",
+                            btnCancelOnPress: () {
+                              Navigator.pop(context);
+                            },
+                            btnOkOnPress: () {},
+                          ).show();
+                        }
                       },
                       buttonText: "Sell",
                       widthSize: mq.width * 0.5,
