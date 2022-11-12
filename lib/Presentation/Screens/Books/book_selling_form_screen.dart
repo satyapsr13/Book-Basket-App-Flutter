@@ -524,4 +524,6 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
     //   imageBytes = File(image!.path).readAsBytesSync();
     // });
   }
+
+
 }

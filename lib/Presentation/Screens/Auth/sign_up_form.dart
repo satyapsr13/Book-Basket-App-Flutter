@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:auto_route/auto_route.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
+import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:book_basket/Utility/common.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,7 +21,7 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
 
   TextEditingController cityController = TextEditingController();
 
-  TextEditingController addressController = TextEditingController();
+  // TextEditingController addressController = TextEditingController();
 
   TextEditingController pincodeController = TextEditingController();
 
@@ -29,7 +33,21 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    if (kDebugMode) {
+      mobileNumberController.text = "1234567890";
+      pincodeController.text = "123456";
+      stateController.text = "MP";
+      cityController.text = "Bhopal";
+      landMarkController.text = " RGPV Hostel";
+      nameController.text = " Book Basket";
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -137,41 +155,95 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
                       readOnly: true,
                       controller: stateController,
                       validator: nullValidation,
+                      onTap: () {
+                        showCupertinoModalPopup(
+                            context: context,
+                            builder: (_) => Column(
+                                  // mainAxisSize: ,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20),
+                                      ),
+                                      child: SizedBox(
+                                        width: mq.width * 0.8,
+                                        height: mq.height * 0.4,
+                                        // decoration: Bo,
+                                        child: CupertinoPicker(
+                                          backgroundColor: Colors.white,
+                                          useMagnifier: true,
+                                          itemExtent: 30,
+                                          magnification: 1.1,
+                                          scrollController:
+                                              FixedExtentScrollController(
+                                                  initialItem: 5),
+                                          children: stateListWidget,
+                                          onSelectedItemChanged: (value) {
+                                            setState(() {
+                                              stateController.text =
+                                                  stateList[value];
+                                              // boookEditionController.text = "";
+                                              // boookEditionController.text =
+                                              //     editionListString[value]
+                                              //         .toString();
+                                            });
+                                            // Navigator.pop(context);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    //  SizedBox(height: mediaquery.height * 0.),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: PrimaryButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        buttonText: "Ok",
+                                        widthSize: mq.width * 0.75,
+                                      ),
+                                    )
+                                  ],
+                                ));
+                      },
                       decoration: InputDecoration(
-                        suffixIcon: DropdownButtonHideUnderline(
-                          child: DropdownButton(
-                            focusColor: Colors.white,
-                            // value: _chosenValue,
-                            //elevation: 5,
-                            iconSize: 40,
-                            style: const TextStyle(color: Colors.white),
-                            //  const IconEnabledColor: Colors.black,
-                            menuMaxHeight: 400,
-                            items: stateList
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: const TextStyle(color: Colors.black),
-                                ),
-                              );
-                            }).toList(),
-                            // hint: Text(
-                            //   "PO no List",
-                            //   style: const TextStyle(
-                            //       color: Colors.black,
-                            //       fontSize: 14,
-                            //       fontWeight: FontWeight.w500),
-                            // ),
-                            onChanged: (value) {
-                              setState(() {
-                                // _chosenValue = value;
-                                stateController.text = value.toString();
-                              });
-                            },
-                          ),
-                        ),
+                        // suffixIcon: DropdownButtonHideUnderline(
+                        //   child: DropdownButton(
+                        //     focusColor: Colors.white,
+                        //     // value: _chosenValue,
+                        //     //elevation: 5,
+                        //     iconSize: 40,
+                        //     style: const TextStyle(color: Colors.white),
+                        //     //  const IconEnabledColor: Colors.black,
+                        //     menuMaxHeight: 400,
+                        //     items: stateList
+                        //         .map<DropdownMenuItem<String>>((String value) {
+                        //       return DropdownMenuItem<String>(
+                        //         value: value,
+                        //         child: Text(
+                        //           value,
+                        //           style: const TextStyle(color: Colors.black),
+                        //         ),
+                        //       );
+                        //     }).toList(),
+                        //     // hint: Text(
+                        //     //   "PO no List",
+                        //     //   style: const TextStyle(
+                        //     //       color: Colors.black,
+                        //     //       fontSize: 14,
+                        //     //       fontWeight: FontWeight.w500),
+                        //     // ),
+                        //     onChanged: (value) {
+                        //       setState(() {
+                        //         // _chosenValue = value;
+                        //         stateController.text = value.toString();
+                        //       });
+                        //     },
+                        //   ),
+                        // ),
+
                         hintText: "Enter your state",
                         hintStyle: const TextStyle(color: Color(0xff415F8B)),
                         border: const OutlineInputBorder(
@@ -187,7 +259,6 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
 
                   seperator(),
                   heading("Pincode"),
-                  // TextEditingController(),
                   seperator(),
                   TextFormField(
                     controller: pincodeController,
@@ -213,7 +284,9 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
                             // desc: 'Dialog description here.............',
                             btnOkText: "Submit",
                             btnCancelOnPress: () {},
-                            btnOkOnPress: () {},
+                            btnOkOnPress: () {
+                              context.pushRoute(HomeScreen());
+                            },
                           ).show();
                         }
                       },
@@ -260,6 +333,96 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
       'Uttar Pradesh',
       'West Bengal',
       'Andaman and Nicobar'
+    ];
+  }
+
+  List<Widget> get stateListWidget {
+    return <Widget>[
+      Text(
+        'Andhra Pradesh',
+      ),
+      Text(
+        'Arunachal Pradesh',
+      ),
+      Text(
+        'Assam',
+      ),
+      Text(
+        'Bihar',
+      ),
+      Text(
+        'Chhattisgarh',
+      ),
+      Text(
+        'Goa',
+      ),
+      Text(
+        'Gujarat',
+      ),
+      Text(
+        'Haryana',
+      ),
+      Text(
+        'Himachal Pradesh',
+      ),
+      Text(
+        'Jharkhand',
+      ),
+      Text(
+        'Karnataka',
+      ),
+      Text(
+        'Kerala',
+      ),
+      Text(
+        'Madhya Pradesh',
+      ),
+      Text(
+        'Maharashtra',
+      ),
+      Text(
+        'Manipur',
+      ),
+      Text(
+        'Meghalaya',
+      ),
+      Text(
+        'Mizoram',
+      ),
+      Text(
+        'Nagaland',
+      ),
+      Text(
+        'Odisha',
+      ),
+      Text(
+        'Punjab',
+      ),
+      Text(
+        'Rajasthan',
+      ),
+      Text(
+        'Sikkim',
+      ),
+      Text(
+        'Tamil Nadu',
+      ),
+      Text(
+        'Telangana',
+      ),
+      Text(
+        'Tripura',
+      ),
+      Text(
+        'Uttarakhand',
+      ),
+      Text(
+        'Uttar Pradesh',
+      ),
+      Text(
+        'West Bengal',
+      ),
+      Text('Andaman and Nicobar'),
     ];
   }
 
