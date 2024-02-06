@@ -7,10 +7,13 @@ import 'package:book_basket/Constants/constants.dart';
 import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Presentation/Screens/Cart/cart_screen.dart';
 import 'package:book_basket/Presentation/Widgets/bottom_navigation_bar.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../Books/book_selling_form_screen.dart';
+
+@RoutePage()
 class UserProfileScreen extends StatefulWidget {
   UserProfileScreen({Key? key}) : super(key: key);
 
@@ -46,7 +49,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
-          context.pushRoute(BookDetailsFormScreen());
+          context.pushRoute(BookDetailsFormRoute());
         },
         child: Icon(
           Icons.add,

@@ -36,8 +36,8 @@ class DioClient {
     baseUrl = "https://bookbasket.net/";
     _dio
       ..options.baseUrl = baseUrl
-      ..options.connectTimeout = _defaultConnectTimeout
-      ..options.receiveTimeout = _defaultReceiveTimeout
+      // ..options.connectTimeout = _defaultConnectTimeout
+      // ..options.receiveTimeout = _defaultReceiveTimeout
       ..httpClientAdapter;
     // ..options.headers = {'Authorization': getToken()};
     if (interceptors?.isNotEmpty ?? false) {

@@ -53,17 +53,17 @@ abstract class NetworkExceptions with _$NetworkExceptions {
             case DioErrorType.cancel:
               networkExceptions = const NetworkExceptions.requestCancelled();
               break;
-            case DioErrorType.connectTimeout:
+            case DioErrorType.connectionTimeout:
               networkExceptions = const NetworkExceptions.requestTimeout();
               break;
-            case DioErrorType.other:
+            case DioErrorType.connectionError:
               networkExceptions =
                   const NetworkExceptions.noInternetConnection();
               break;
             case DioErrorType.receiveTimeout:
               networkExceptions = const NetworkExceptions.sendTimeout();
               break;
-            case DioErrorType.response:
+            case DioErrorType.badResponse:
               switch (error.response!.statusCode) {
                 case 400:
                   networkExceptions = const NetworkExceptions.badRequest();
@@ -102,6 +102,9 @@ abstract class NetworkExceptions with _$NetworkExceptions {
               }
               break;
             case DioErrorType.sendTimeout:
+              networkExceptions = const NetworkExceptions.sendTimeout();
+              break;
+            default:
               networkExceptions = const NetworkExceptions.sendTimeout();
               break;
           }

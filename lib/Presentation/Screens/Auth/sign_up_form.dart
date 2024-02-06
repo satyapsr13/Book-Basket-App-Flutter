@@ -3,13 +3,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:book_basket/Utility/common.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+@RoutePage(name: 'SignUp')
 class SignUpFormScreen extends StatefulWidget {
   @override
   State<SignUpFormScreen> createState() => _SignUpFormScreenState();
@@ -285,7 +286,7 @@ class _SignUpFormScreenState extends State<SignUpFormScreen> {
                             btnOkText: "Submit",
                             btnCancelOnPress: () {},
                             btnOkOnPress: () {
-                              context.pushRoute(HomeScreen());
+                              context.pushRoute(HomeRoute());
                             },
                           ).show();
                         }

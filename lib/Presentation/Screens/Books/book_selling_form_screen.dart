@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class BookDetailsFormScreen extends StatefulWidget {
   const BookDetailsFormScreen({Key? key}) : super(key: key);
 
@@ -524,6 +527,4 @@ class _BookDetailsFormScreenState extends State<BookDetailsFormScreen> {
     //   imageBytes = File(image!.path).readAsBytesSync();
     // });
   }
-
-
 }

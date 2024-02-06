@@ -4,7 +4,9 @@ import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
 import 'package:book_basket/Utility/common.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class BookDetailsScreen extends StatelessWidget {
   const BookDetailsScreen({Key? key}) : super(key: key);
 

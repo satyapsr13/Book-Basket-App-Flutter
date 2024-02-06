@@ -4,14 +4,17 @@ import 'dart:developer';
 import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Data/services/google_sign_in.dart';
+import 'package:book_basket/Presentation/Screens/Home/home_screen.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:book_basket/Utility/common.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:get/get.dart';
 
+@RoutePage()
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -91,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.replaceRoute(LoginScreen());
+                    context.replaceRoute(LoginRoute());
                   },
                   child: Text(
                     'Login',
@@ -238,7 +241,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       PrimaryButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            context.pushRoute(HomeScreen());
+                            // context.pushRoute(HomeRoute());
+                            Get.to(HomeScreen());
                           }
                         },
                         buttonText: "Sign up",

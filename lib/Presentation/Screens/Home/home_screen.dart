@@ -8,10 +8,10 @@ import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Constants/constants.dart';
 import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Presentation/Widgets/bottom_navigation_bar.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+@RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen>
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
-          context.pushRoute(BookDetailsFormScreen());
+          context.pushRoute(BookDetailsFormRoute());
         },
         child: Icon(
           Icons.add,
@@ -317,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen>
               itemCount: 20,
               itemBuilder: (ctx, index) => InkWell(
                 onTap: () {
-                  context.pushRoute(BookDetailsScreen());
+                  context.pushRoute(BookDetailsRoute());
                 },
                 child: BooksWidget(
                   bookImageUrl: 'https://picsum.photos/200',
@@ -440,7 +440,7 @@ class BooksWidget extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            context.pushRoute(CartScreen());
+                            context.pushRoute(CartRoute());
                           },
                           child: Container(
                             height: 25,

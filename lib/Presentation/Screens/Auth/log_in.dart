@@ -4,15 +4,18 @@ import 'dart:developer';
 import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Data/services/google_sign_in.dart';
+import 'package:book_basket/Presentation/Screens/Auth/sign_up.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:book_basket/Utility/common.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:get/get.dart';
 
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -47,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onTap: () async {
                 final userData = await GoogleSignInApi.login();
                 if (userData != null) {
-                  context.pushRoute(HomeScreen());
+                  context.pushRoute(HomeRoute());
                 }
                 log("-------Login With Google ---------${userData.toString()}-------------------");
               },
@@ -93,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.replaceRoute(SignUpScreen());
+                    context.replaceRoute(SignUpRoute());
                   },
                   child: Text(
                     'Sign Up',
@@ -228,7 +231,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               // context.pushRoute(HomeScreen());
-                              context.pushRoute(SignUpFormScreen());
+                              // context.pushRoute(SignUpRoute());
+                              Get.to(SignUpScreen());
                             }
                           },
                           buttonText: "LOGIN",

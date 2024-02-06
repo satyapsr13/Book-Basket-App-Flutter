@@ -3,10 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:book_basket/Constants/colors.dart';
 // import 'package:book_basket/Constants/AppImages.dart';
 import 'package:book_basket/Constants/locations.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
+import 'package:book_basket/Presentation/Screens/Auth/log_in.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+@RoutePage()
 class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({Key? key}) : super(key: key);
 
@@ -131,7 +134,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    context.replaceRoute(LoginScreen());
+                    context.replaceRoute(LoginRoute());
                   },
                   child: Text(
                     "Skip",
@@ -148,7 +151,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 MaterialButton(
                   onPressed: () {
                     if ((isVisible(2, index))) {
-                      context.replaceRoute(LoginScreen());
+                      // context.replaceRoute(LoginRoute());
+                      Get.to(LoginScreen());
                     } else {
                       setState(() {
                         index++;

@@ -6,13 +6,13 @@ import 'package:book_basket/Constants/constants.dart';
 import 'package:book_basket/Constants/locations.dart';
 import 'package:book_basket/Presentation/Widgets/bottom_navigation_bar.dart';
 import 'package:book_basket/Presentation/Widgets/coming_soon_label.dart';
+import 'package:book_basket/Routes/routes.dart';
 import 'package:flutter/material.dart';
 
 import 'package:book_basket/Constants/colors.dart';
 import 'package:book_basket/Presentation/Widgets/primary_button.dart';
-import 'package:book_basket/Routes/routes.gr.dart';
 import 'package:lottie/lottie.dart';
-
+@RoutePage()
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -43,7 +43,7 @@ class _CartScreenState extends State<CartScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
-          context.pushRoute(BookDetailsFormScreen());
+          context.pushRoute(BookDetailsFormRoute());
         },
         child: Icon(
           Icons.add,
@@ -102,7 +102,7 @@ class _CartScreenState extends State<CartScreen> {
         ),
         PrimaryButton(
           onPressed: () {
-            context.pushRoute(HomeScreen());
+            context.pushRoute(HomeRoute());
           },
           buttonText: "Shop now",
           widthSize: mq.width * 0.5,
